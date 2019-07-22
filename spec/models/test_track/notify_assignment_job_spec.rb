@@ -58,6 +58,7 @@ RSpec.describe TestTrack::NotifyAssignmentJob do
     let(:remote_assignment) { instance_double(TestTrack::Remote::AssignmentEvent) }
     before do
       allow(TestTrack::Remote::AssignmentEvent).to receive(:create!).and_return(remote_assignment)
+      allow(TestTrack).to receive(:analytics).and_return(double)
       allow(TestTrack.analytics).to receive(:track).and_return(true)
     end
 
