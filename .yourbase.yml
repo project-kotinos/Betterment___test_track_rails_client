@@ -1,0 +1,26 @@
+build_targets:
+- commands:
+  - chmod +x yourbased.sh
+  - sh ./yourbased.sh
+  container:
+    image: yourbase/yb_ubuntu:16.04
+  environment:
+  - BUNDLE_GEMFILE=gemfiles/rails_5_1.gemfile
+  name: 2.4.2_rails_5_1.gemfile
+- commands:
+  - chmod +x yourbased.sh
+  - sh ./yourbased.sh
+  container:
+    image: yourbase/yb_ubuntu:16.04
+  environment:
+  - BUNDLE_GEMFILE=gemfiles/rails_5_2.gemfile
+  name: 2.4.2_rails_5_2.gemfile
+ci:
+  builds:
+  - build_target: 2.4.2_rails_5_1.gemfile
+    name: 2.4.2_rails_5_1.gemfile
+  - build_target: 2.4.2_rails_5_2.gemfile
+    name: 2.4.2_rails_5_2.gemfile
+dependencies:
+  build:
+  - ruby:2.4.2
